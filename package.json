@@ -1,0 +1,25 @@
+{
+  "name": "0x211",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "hardhat compile",
+    "test:light": "hardhat test",
+    "test": "hardhat coverage"
+  },
+  "keywords": [],
+  "author": "zaid",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "chai": "^4.4.1",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^6.11.1",
+    "hardhat": "^2.21.0",
+    "solidity-coverage": "^0.8.11"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
