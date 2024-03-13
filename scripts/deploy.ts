@@ -2,10 +2,8 @@ const hre = require("hardhat");
 
 async function main() {
   const OtakuVerse = await hre.ethers.getContractFactory("OtakuVerse");
-  const otakuToken = await OtakuVerse.deploy(
-    "0x06Dd0329Ffa6b588BFeB9D73900846CA136d41f0"
-  );
-    
+  const otakuToken = await OtakuVerse.deploy();
+
   const tokenAddress = await otakuToken.getAddress();
   console.log("otakuToken deployed to:", tokenAddress);
 }

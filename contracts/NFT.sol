@@ -4,45 +4,20 @@ pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract OtakuVerse is ERC721, ERC721URIStorage, Ownable {
-    uint256 private _nextTokenId;
+contract OtakuVerse is ERC721URIStorage{
+    uint256 private _tokenIds = 0; // Initialize token ID counter
 
-    constructor(address initialOwner)
-        ERC721("OtakuVerse", "OTV")
-        Ownable(initialOwner)
-    {}
+    constructor() ERC721("Otaku Verse", "OTV") {}
 
-    function safeMint(address to, string memory uri) public returns (uint256){
-        uint256 tokenId = _nextTokenId++;
-        _mint(to, tokenId);
-        _setTokenURI(tokenId, uri);
-        return tokenId;
-    }
-
-    function getTokenCount() public view returns (uint256){
-        return _nextTokenId;
-    }
-
-    // The following functions are overrides required by Solidity.
-
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (string memory)
-    {
-        return super.tokenURI(tokenId);
-    }
-
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (bool)
-    {
-        return super.supportsInterface(interfaceId);
+    function mintNFT(address recipient, string memory tokenURI) public returns (uint256) {
+        _tokenIds += 1; // Increment the token ID
+        uint256 newItemId = _tokenIds;
+        
+        _mint(recipient, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+        
+        return newItemId;
     }
 }
