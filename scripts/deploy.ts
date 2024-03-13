@@ -1,22 +1,13 @@
-import { ethers } from "hardhat";
+const hre = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
-
-  const lockedAmount = ethers.parseEther("0.001");
-
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
-
-  await lock.waitForDeployment();
-
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+  const OtakuVerse = await hre.ethers.getContractFactory("OtakuVerse");
+  const otakuToken = await OtakuVerse.deploy(
+    "0x06Dd0329Ffa6b588BFeB9D73900846CA136d41f0"
   );
+    
+  const tokenAddress = await otakuToken.getAddress();
+  console.log("otakuToken deployed to:", tokenAddress);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
