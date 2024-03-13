@@ -20,6 +20,8 @@
     "solidity-coverage": "^0.8.11"
   },
   "dependencies": {
+    "@nomicfoundation/edr-darwin-arm64": "^0.2.1",
+    "@openzeppelin/contracts": "^5.0.2",
     "dotenv": "^16.4.5"
   }
 }
